@@ -25,6 +25,7 @@ Each part has a clear responsibility:
 - `application/summary.py`: simple rule-based 360 summary logic
 - `mcp_server/server.py`: MCP tools (`health_check`, `search_entities`, `get_account_360`, `get_lead_360`)
 - `scripts/smoke_test.py`: end-to-end smoke test (AI agent simulation)
+- `scripts/agent_orchestrator.py`: deterministic AI agent orchestration example
 - `scripts/mcp_prompts.md`: prompts for MCP client demo
 - `ui/`: React + Tailwind testing UI
 
@@ -83,6 +84,12 @@ Run end-to-end local usage script:
 
 ```bash
 PYTHONPATH=. python scripts/smoke_test.py
+```
+
+Run deterministic AI-agent orchestration example:
+
+```bash
+PYTHONPATH=. python scripts/agent_orchestrator.py
 ```
 
 This script simulates AI-agent style usage:
