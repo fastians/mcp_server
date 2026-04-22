@@ -40,6 +40,7 @@ def compose_account_360(account: dict[str, Any]) -> dict[str, Any]:
             next_actions.append("Re-engage with a tailored outreach update.")
 
     health = "green" if not risks else ("amber" if len(risks) == 1 else "red")
+    status = {"green": "healthy", "amber": "attention", "red": "at_risk"}[health]
 
     while len(next_actions) < 3:
         next_actions.append(
@@ -52,6 +53,8 @@ def compose_account_360(account: dict[str, Any]) -> dict[str, Any]:
 
     return {
         "entity": {"type": "account", "id": account.get("id"), "name": account.get("name")},
+        "summary": f"Account {account.get('name')} is {status} with {len(risks)} open risk(s).",
+        "status": status,
         "health": health,
         "open_risks": risks,
         "recent_activity": activities[:5],
@@ -78,6 +81,7 @@ def compose_lead_360(lead: dict[str, Any]) -> dict[str, Any]:
         next_actions.append("Enrich lead profile before deeper outreach.")
 
     health = "green" if not risks else ("amber" if len(risks) == 1 else "red")
+    status = {"green": "healthy", "amber": "attention", "red": "at_risk"}[health]
 
     while len(next_actions) < 3:
         next_actions.append(
@@ -90,6 +94,8 @@ def compose_lead_360(lead: dict[str, Any]) -> dict[str, Any]:
 
     return {
         "entity": {"type": "lead", "id": lead.get("id"), "name": lead.get("name"), "email": lead.get("email")},
+        "summary": f"Lead {lead.get('name')} is {status} with {len(risks)} open risk(s).",
+        "status": status,
         "health": health,
         "open_risks": risks,
         "recent_activity": lead.get("recent_activities", [])[:5],

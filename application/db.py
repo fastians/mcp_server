@@ -70,6 +70,9 @@ def init_db() -> None:
             )
             """
         )
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_opportunities_account_id ON opportunities(account_id)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_activities_entity ON activities(entity_type, entity_id)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_activities_date ON activities(date)")
     conn.close()
 
 

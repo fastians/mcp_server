@@ -1,5 +1,12 @@
 # ABC CRM/SFA MCP POC (Simple)
 
+Full MCP documentation:
+
+- `docs/MCP_DOCUMENTATION.md`
+- `docs/INTEGRATION_GUIDE.md` (for third-party integrators)
+- `docs/ENGINEERING_REVIEW.md` (review findings + refactor notes)
+- `docs/MCP_IMPLEMENTATION_CHECKLIST.md` (checklist compliance status)
+
 This repo is organized into 3 clean parts:
 
 1. `application/` - real application layer with SQLite database and seed data
@@ -99,7 +106,7 @@ Suggested order:
 ### C. What user should validate
 
 - Response has required schema fields:
-  - `entity`, `health`, `open_risks`, `recent_activity`, `next_actions`, `sources`
+  - `entity`, `summary`, `status`, `health`, `open_risks`, `recent_activity`, `next_actions`, `sources`
 - `next_actions` contains at least 3 actions
 - `sources` includes record IDs used to ground output
 - Invalid input returns safe error format (no traceback)
@@ -164,5 +171,6 @@ From repo root:
 2. Run `search_entities` for account/lead
 3. Run `get_account_360`
 4. Run `get_lead_360`
-5. Validate JSON includes:
-   - `entity`, `health`, `open_risks`, `recent_activity`, `next_actions`, `sources`
+5. Open `Test Status` tab and click `Run Unit Tests` and `Run Smoke Test`
+6. Validate JSON includes:
+   - `entity`, `summary`, `status`, `health`, `open_risks`, `recent_activity`, `next_actions`, `sources`

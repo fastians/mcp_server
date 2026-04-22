@@ -23,6 +23,10 @@ class ApplicationTests(unittest.TestCase):
         with self.assertRaises(ApplicationError):
             get_account_360("acc_missing")
 
+    def test_search_entities_rejects_empty_query(self) -> None:
+        with self.assertRaises(ApplicationError):
+            search_entities(query="   ", entity_type="account")
+
 
 if __name__ == "__main__":
     unittest.main()

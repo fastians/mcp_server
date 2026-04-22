@@ -15,6 +15,8 @@ class SummaryTests(unittest.TestCase):
             }
         )
         self.assertEqual(payload["entity"]["type"], "account")
+        self.assertIn("summary", payload)
+        self.assertIn("status", payload)
         self.assertIn("health", payload)
         self.assertIn("open_risks", payload)
         self.assertIn("next_actions", payload)
@@ -35,6 +37,8 @@ class SummaryTests(unittest.TestCase):
             }
         )
         self.assertEqual(payload["entity"]["type"], "lead")
+        self.assertIn("summary", payload)
+        self.assertIn("status", payload)
         self.assertIn(payload["health"], {"green", "amber", "red"})
         self.assertGreaterEqual(len(payload["open_risks"]), 1)
         self.assertEqual(len(payload["next_actions"]), 3)

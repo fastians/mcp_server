@@ -12,10 +12,18 @@ class ToolTests(unittest.TestCase):
     def test_search_entities_validation(self) -> None:
         payload = search_entities(query="Acme", entity_type="invalid")
         self.assertIn("error", payload)
+        self.assertIn("error_code", payload["error"])
+        self.assertIn("recoverable", payload["error"])
+
+    def test_get_account_360_empty_id(self) -> None:
+        payload = get_account_360(account_id=" ")
+        self.assertIn("error", payload)
 
     def test_get_account_360(self) -> None:
         payload = get_account_360(account_id="acc_001")
         self.assertEqual(payload["entity"]["id"], "acc_001")
+        self.assertIn("summary", payload)
+        self.assertIn("status", payload)
         self.assertEqual(len(payload["next_actions"]), 3)
 
     def test_get_lead_360(self) -> None:
